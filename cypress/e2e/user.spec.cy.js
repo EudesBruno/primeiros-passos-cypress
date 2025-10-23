@@ -17,8 +17,9 @@ describe('Orange HRM Tests', () => {
     otheridField: ':nth-child(3) > :nth-child(1) > :nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input',
     driverlicenseField: ':nth-child(2) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input',
     dateField: ':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon',
-    dateCloseButton:':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-input',
-    nacionalityField: ':nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text'
+    dateCloseButton: '.--close',
+    nacionalityField: ':nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text',
+    submitButton: ".orangehrm-left-space"
   }
 
 
@@ -36,10 +37,12 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.employeeField).clear().type("327")
     cy.get(selectorsList.otheridField).clear().type("5327")
     cy.get(selectorsList.driverlicenseField).clear().type("182025")
-    cy.get(selectorsList.dateField).type("2025-03-12")
-    cy.get(selectorsList.dateCloseButton).click()
-    cy.get(selectorsList.nacionalityField).type("bbbbbbbbbbbbbb")
-    cy.get(selectorsList.dateCloseButton).click()
+    cy.get(selectorsList.submitButton).eq(0).click()
+    cy.get("body").should("contain", "Successfully Updated")
+    //cy.get(selectorsList.dateField).type("2025-03-12")
+    //cy.get(selectorsList.dateCloseButton).click()
+    //cy.get(selectorsList.nacionalityField).type("bbbbbbbbbbbbbb")
+    //cy.get(selectorsList.dateCloseButton).click()
   })
 
   it('Login - Fail', () => {
