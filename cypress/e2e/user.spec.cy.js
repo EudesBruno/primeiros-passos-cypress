@@ -37,12 +37,10 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.employeeField).clear().type("327")
     cy.get(selectorsList.otheridField).clear().type("5327")
     cy.get(selectorsList.driverlicenseField).clear().type("182025")
+    cy.get(selectorsList.dateField).clear().type("2025-03-12")
+    cy.get(selectorsList.dateCloseButton).click()
     cy.get(selectorsList.submitButton).eq(0).click()
     cy.get("body").should("contain", "Successfully Updated")
-    //cy.get(selectorsList.dateField).type("2025-03-12")
-    //cy.get(selectorsList.dateCloseButton).click()
-    //cy.get(selectorsList.nacionalityField).type("bbbbbbbbbbbbbb")
-    //cy.get(selectorsList.dateCloseButton).click()
   })
 
   it('Login - Fail', () => {
