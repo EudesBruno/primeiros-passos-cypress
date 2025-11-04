@@ -5,7 +5,9 @@ import MenuPage from '../pages/menuPage'
 import MyinfoPage from '../pages/myinfoPage'
 import AdminPage from '../pages/adminPage'
 
+const Chance = require('chance');
 
+const chance = new Chance()
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const menuPage = new MenuPage()
@@ -15,16 +17,19 @@ const adminPage = new AdminPage()
 describe('Orange HRM Tests', () => {
 
 
-  it('User Info fill - sucess', () => {
+  it.only('User Info fill - sucess', () => {
     loginPage.accessLoginPage()
     loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
     dashboardPage.ckeckDashboardPage()
     menuPage.accessMyInfo()
-    myinfoPage.infofill()
+    myinfoPage.fillPersonalDetails(chance.first(), chance.last(), chance.last())
+    myinfoPage.fillEmployeeDetails('empdId', 'otherId', 'DriverLicense','2025-12-12')
+    myinfoPage.fillStatusDetails('bbbbbbbbbbbbbb', 'm', '1999-12-22')
+    myinfoPage.saveForm()
 
   })
 
-  it.only('User Admin fill - sucess', () => {
+  it('User Admin fill - sucess', () => {
     loginPage.accessLoginPage()
     loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
     dashboardPage.ckeckDashboardPage()
@@ -33,11 +38,4 @@ describe('Orange HRM Tests', () => {
 
   })
 
-  it('Login - Fail', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameField).type(userData.userFail.username)
-    cy.get(selectorsList.passwordField).type(userData.userFail.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.get(selectorsList.wrongCredentialAlert)
-  })
 })

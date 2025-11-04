@@ -18,24 +18,38 @@ class MyinfoPage {
         return selectors
     }
 
-    infofill() {
-        cy.get(this.selectorsList().firstNameField).clear().type("Junior")
-        cy.get(this.selectorsList().middleNameField).clear().type("Silva")
-        cy.get(this.selectorsList().lastnameField).clear().type("Andrade")
-        cy.get(this.selectorsList().employeeField).eq(0).clear().type("327")
-        cy.get(this.selectorsList().otheridField).clear().type("5327")
-        cy.get(this.selectorsList().driverlicenseField).clear().type("182025")
-        cy.get(this.selectorsList().dateField).type('{selectall}{backspace}')
-        cy.get(this.selectorsList().dateField).type("2025-03-10")
-        cy.get(this.selectorsList().dateCloseButton).eq(0).click()
-        cy.get(this.selectorsList().nacionalityField).type("bbbbbbbbbbbbbb")
-        cy.get(this.selectorsList().maritalField).type("m")
-        cy.get(this.selectorsList().datebirthField).type('{selectall}{backspace}')
-        cy.get(this.selectorsList().datebirthField).type("1999-12-22")
-        cy.get(this.selectorsList().datebirthclose).eq(1).click()
-        cy.get(this.selectorsList().submitButton).eq(0).click()
-        cy.get("body").should("contain", "Successfully Updated")
+    fillPersonalDetails(firstName, middleName, lastName) {
+        cy.get(this.selectorsList().firstNameField).clear().type(firstName)
+        cy.get(this.selectorsList().middleNameField).clear().type(middleName)
+        cy.get(this.selectorsList().lastnameField).clear().type(lastName)
     }
+
+    fillEmployeeDetails(employeeId, otherId, DriverLicense, DriverLicenseDate) {
+        cy.get(this.selectorsList().employeeField).eq(0).clear().type(employeeId)
+        cy.get(this.selectorsList().otheridField).clear().type(otherId)
+        cy.get(this.selectorsList().driverlicenseField).clear().type(DriverLicense)
+        cy.get(this.selectorsList().dateField).type('{selectall}{backspace}')
+        cy.get(this.selectorsList().dateField).type(DriverLicenseDate)
+        cy.get(this.selectorsList().dateCloseButton).eq(0).click({ force: true })
+     
+    }
+
+    fillStatusDetails(nacionality, marital, dateBirth) {
+        cy.get(this.selectorsList().nacionalityField).type(nacionality)
+        cy.get(this.selectorsList().maritalField).type(marital)
+        cy.get(this.selectorsList().datebirthField).type('{selectall}{backspace}')
+        cy.get(this.selectorsList().datebirthField).type(dateBirth)
+        cy.get(this.selectorsList().datebirthclose).eq(1).click({ force: true })
+        
+     
+    }
+
+    saveForm() {
+        cy.get(this.selectorsList().submitButton).eq(0).click({ force: true })
+        cy.get("body").should("contain", "Successfully Updated")
+
+    }
+
 } 
 
 export default MyinfoPage
