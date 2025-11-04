@@ -9,8 +9,10 @@ class MyinfoPage {
             driverlicenseField: ":nth-child(2) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input",
             dateField: ":nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon",
             dateCloseButton: ".--close",
-            nacionalityField: ":nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text",
-            maritalField: ":nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text > .oxd-select-text--after > .oxd-icon",
+            nacionalityBoxField: ":nth-child(5) > :nth-child(1) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text",
+            nacionalitySelected: '.oxd-select-dropdown > :nth-child(27)',
+            maritalBoxField: ":nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text",
+            maritalSelected: ".oxd-select-dropdown > :nth-child(3)",
             datebirthField: ":nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-icon",
             datebirthclose: ".oxd-date-wrapper",
             submitButton: ".orangehrm-left-space"  
@@ -34,9 +36,11 @@ class MyinfoPage {
      
     }
 
-    fillStatusDetails(nacionality, marital, dateBirth) {
-        cy.get(this.selectorsList().nacionalityField).type(nacionality)
-        cy.get(this.selectorsList().maritalField).type(marital)
+    fillStatusDetails(dateBirth) {
+        cy.get(this.selectorsList().nacionalityBoxField).click()
+        cy.get(this.selectorsList().nacionalitySelected).click()
+        cy.get(this.selectorsList().maritalBoxField).click()
+        cy.get(this.selectorsList().maritalSelected).click()
         cy.get(this.selectorsList().datebirthField).type('{selectall}{backspace}')
         cy.get(this.selectorsList().datebirthField).type(dateBirth)
         cy.get(this.selectorsList().datebirthclose).eq(1).click({ force: true })

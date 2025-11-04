@@ -17,14 +17,14 @@ const adminPage = new AdminPage()
 describe('Orange HRM Tests', () => {
 
 
-  it.only('User Info fill - sucess', () => {
+  it.only('User Info Update - sucess', () => {
     loginPage.accessLoginPage()
     loginPage.loginWithAnyUser(userData.userSuccess.username, userData.userSuccess.password)
     dashboardPage.ckeckDashboardPage()
     menuPage.accessMyInfo()
     myinfoPage.fillPersonalDetails(chance.first(), chance.last(), chance.last())
-    myinfoPage.fillEmployeeDetails('empdId', 'otherId', 'DriverLicense','2025-12-12')
-    myinfoPage.fillStatusDetails('bbbbbbbbbbbbbb', 'm', '1999-12-22')
+    myinfoPage.fillEmployeeDetails(chance.integer({ min: 100, max: 200 }), chance.integer({ min: 300, max: 400 }), chance.integer({ min: 10, max: 20 }), "2025-11-03")
+    myinfoPage.fillStatusDetails('1999-22-12')
     myinfoPage.saveForm()
 
   })
