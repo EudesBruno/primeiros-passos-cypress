@@ -13,8 +13,6 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: 18
-            
-            - run: npm ci
 
             - name: Cypress Tests 
               uses: cypress-io/github-action@v5
